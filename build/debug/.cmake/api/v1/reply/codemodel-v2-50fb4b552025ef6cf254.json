@@ -1,0 +1,89 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "libs/hagl",
+					"jsonFile" : "directory-libs.hagl-Debug-4fed664676da8c61ec6e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "libs/hagl"
+				},
+				{
+					"build" : "libs/hagl_hal",
+					"jsonFile" : "directory-libs.hagl_hal-Debug-7eac5ebab06ee5876ad9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "libs/hagl_hal"
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "LocusTester",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "LocusTester.elf::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-LocusTester.elf-Debug-f619797b8f67c0703815.json",
+					"name" : "LocusTester.elf",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/user/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/locus-st7735s/build/debug",
+		"source" : "/home/user/\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b/locus-st7735s"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

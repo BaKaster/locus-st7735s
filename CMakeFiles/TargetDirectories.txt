@@ -1,0 +1,7 @@
+/home/user/Документы/locus-st7735s/CMakeFiles/LocusTester.elf.dir
+/home/user/Документы/locus-st7735s/CMakeFiles/edit_cache.dir
+/home/user/Документы/locus-st7735s/CMakeFiles/rebuild_cache.dir
+/home/user/Документы/locus-st7735s/libs/hagl/CMakeFiles/edit_cache.dir
+/home/user/Документы/locus-st7735s/libs/hagl/CMakeFiles/rebuild_cache.dir
+/home/user/Документы/locus-st7735s/libs/hagl_hal/CMakeFiles/edit_cache.dir
+/home/user/Документы/locus-st7735s/libs/hagl_hal/CMakeFiles/rebuild_cache.dir
