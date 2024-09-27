@@ -93,7 +93,7 @@ public:
 	template <class T, bool F = std::is_floating_point<T>::value>  // To restrain implicit int / float conversion
 	typename std::enable_if<!F>::type setValue(unsigned aRow, T aValue)
 	{
-		getAt(aRow, 1).template setProperty(Graphics::Text{"%d", aValue});
+		getAt(aRow, 1).template setProperty(Graphics::Text{"%1d%", aValue});
 	}
 
 	template <class T, bool F = std::is_floating_point<T>::value>

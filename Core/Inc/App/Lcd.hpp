@@ -45,7 +45,7 @@ namespace App {
 class Lcd {
 private:
 	enum class Page {
-		Pos = 0,
+		Main = 0,
 		Euler,
 		Active,
 		Enabled,
@@ -76,6 +76,7 @@ private:
 	union {
 		KvGrid<3> *kvGrid3;
 		KvGrid<4> *kvGrid4;
+		KvGrid<6> *kvGrid6;
 	};
 
 	struct {

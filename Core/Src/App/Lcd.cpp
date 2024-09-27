@@ -26,14 +26,14 @@ void Lcd::widgetPageNumFormatUpdate()
 }
 
 Lcd::Lcd():
-	page{Page::Pos},
+	page{Page::Main},
 	backgroundColor{hagl_color(255, 255, 255), hagl_color(255, 255, 255)},
 	fillDisplay{ren.background, &backgroundColor},
 	slider{ren.background},
 	textColor{hagl_color(0, 0, 0)},
 	textSize{{0, 0}, {40, 15}},
 	gridOffset{{5, 5}},
-	kvGrid3{nullptr},
+	kvGrid6{nullptr},
 	widget{
 		{ren.background, &Graphics::Font::kDefault, Graphics::BgColor{hagl_color(255, 255, 255), hagl_color(0, 0, 0)}, Graphics::Area{{{5, 130}}, {{120, 150}}}}
 	}
@@ -46,10 +46,21 @@ Lcd::Lcd():
 void Lcd::updateInfo(const Lcs::Info &aInfo)
 {
 	switch (page) {
-		case Page::Pos: {  // Position
-			static const char *labels[] = {"x", "y", "z"};
+		case Page::Main: {  // Position
+			static const char *posLabels[] = {"x", "y", "z", "roll", "pitch", "yaw"};
 			auto &pos = aInfo.getPos();
-			gridSetKv(*kvGrid3, labels, pos);
+			for (int i = 0; i < 3; ++i) {
+				kvGrid6->setKey(i, posLabels[i]);
+				kvGrid6->setValue(i, pos[i]);
+			}
+
+			static const char *eulerLabels[] = {"roll", "pitch", "yaw"};
+			static const char *kFpFormat = "%3d.%.1d";
+			auto euler = aInfo.getEuler();
+			for (int i = 0; i < 3; ++i ) {
+				kvGrid6->setKey(i + 3, eulerLabels[i]);
+				kvGrid6->setValue(i + 3, euler[i]);
+			}
 
 			break;
 		}
@@ -96,7 +107,10 @@ void Lcd::slide(short aShift)
 {
 	// Deallocate grid
 	switch (page) {
-		case Page::Pos:
+		case Page::Main:
+			gridDeinit(&kvGrid6);
+
+			break;
 		case Page::Euler:
 			gridDeinit(&kvGrid3);
 
@@ -120,7 +134,10 @@ void Lcd::slide(short aShift)
 
 	// Initialize new page widget
 	switch (page) {
-		case Page::Pos:
+		case Page::Main:
+			gridInit(&kvGrid6, "", false);
+
+			break;
 		case Page::Euler:
 			gridInit(&kvGrid3, "", false);
 
