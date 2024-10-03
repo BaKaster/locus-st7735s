@@ -46,7 +46,6 @@ class Lcd {
 private:
 	enum class Page {
 		Main = 0,
-		Euler,
 		Active,
 		Enabled,
 		Amplitude,

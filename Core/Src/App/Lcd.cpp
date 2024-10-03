@@ -47,30 +47,23 @@ void Lcd::updateInfo(const Lcs::Info &aInfo)
 {
 	switch (page) {
 		case Page::Main: {  // Position
-			static const char *posLabels[] = {"x", "y", "z", "roll", "pitch", "yaw"};
+			static const char *posLabels[] = {"x", "y", "z"};
 			auto &pos = aInfo.getPos();
 			for (int i = 0; i < 3; ++i) {
 				kvGrid6->setKey(i, posLabels[i]);
 				kvGrid6->setValue(i, pos[i]);
 			}
 
-			static const char *eulerLabels[] = {"roll", "pitch", "yaw"};
-			static const char *kFpFormat = "%3d.%.1d";
-			auto euler = aInfo.getEuler();
-			for (int i = 0; i < 3; ++i ) {
-				kvGrid6->setKey(i + 3, eulerLabels[i]);
-				kvGrid6->setValue(i + 3, euler[i]);
+    		static const char *eulerLabels[] = {"roll", "pitch", "yaw"};
+    		static const char *kFpFormat = "%3d.%.1d"; // Формат для float
+    		auto euler = aInfo.getEuler();
+    		for (int i = 0; i < 3; ++i) {
+        		char buffer[280]; 
+        		snprintf(buffer, sizeof(buffer), kFpFormat, euler[i] / 10, euler[i] % 10); 
+
+        		kvGrid6->setKey(i + 3, eulerLabels[i]);
+        		kvGrid6->setValue(i + 3, Graphics::Text{buffer}); // Используем Graphics::Text
 			}
-
-			break;
-		}
-
-		case Page::Euler: {  // Euler angles
-			static const char *labels[] = {"roll", "pitch", "yaw"};
-			static const char *kFpFormat = "%3d.%.1d";
-			auto euler = aInfo.getEuler();
-			Graphics::Text text[3] = {{kFpFormat, euler[0] / 10, euler[0] % 10}, {kFpFormat, euler[1] / 10, euler[1] % 10}, {kFpFormat, euler[2] / 10, euler[2] % 10}};
-			gridSetKv(*kvGrid3, labels, text);
 
 			break;
 		}
@@ -111,10 +104,6 @@ void Lcd::slide(short aShift)
 			gridDeinit(&kvGrid6);
 
 			break;
-		case Page::Euler:
-			gridDeinit(&kvGrid3);
-
-			break;
 
 		case Page::Active:
 		case Page::Enabled:
@@ -136,10 +125,6 @@ void Lcd::slide(short aShift)
 	switch (page) {
 		case Page::Main:
 			gridInit(&kvGrid6, "", false);
-
-			break;
-		case Page::Euler:
-			gridInit(&kvGrid3, "", false);
 
 			break;
 
